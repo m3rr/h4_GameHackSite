@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no" />
+    <title>H4_GameHack | Cyberpunk Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/h4_GameHackSite/assets/index-DOP41sln.js"></script>
+    <link rel="stylesheet" crossorigin href="/h4_GameHackSite/assets/index-B-BBLvsn.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  
+<!-- Element Selector Loader (Auto-injected by Vite) -->
+<script>
+(function() {
+  console.log('[ElementSelectorLoader] Initializing...');
+  let scriptInjected = false;
+  window.addEventListener('message', function(event) {
+    if (!event.data || event.data.type !== 'inject-element-selector-script') return;
+    if (scriptInjected) { console.log('[ElementSelectorLoader] Script already injected, skipping'); return; }
+    console.log('[ElementSelectorLoader] Received script injection request');
+    const script = event.data.script;
+    if (!script) { console.error('[ElementSelectorLoader] No script content received'); return; }
+    try {
+      const scriptElement = document.createElement('script');
+      scriptElement.id = 'element-selector-injected';
+      scriptElement.textContent = script;
+      const target = document.head || document.body;
+      if (target) {
+        target.appendChild(scriptElement);
+        scriptInjected = true;
+        console.log('[ElementSelectorLoader] Script injected and executed successfully');
+        if (window.parent) window.parent.postMessage({ type: 'element-selector-script-injected', success: true }, "*");
+      } else {
+        console.error('[ElementSelectorLoader] No head or body element found');
+      }
+    } catch (error) {
+      console.error('[ElementSelectorLoader] Failed to inject script:', error);
+      if (window.parent) window.parent.postMessage({ type: 'element-selector-script-injected', success: false, error: error.message }, "*");
+    }
+  });
+  if (window.parent && window.parent !== window) {
+    window.parent.postMessage({ type: 'element-selector-loader-ready' }, "*");
+    console.log('[ElementSelectorLoader] Ready and waiting for injection request');
+  }
+})();
+</script>
+</body>
+</html>
