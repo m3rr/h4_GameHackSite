@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import DetailedBreakdown from './pages/DetailedBreakdown'
 import VersionHistory from './pages/VersionHistory'
+import Download from './pages/Download'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { SplashScreen } from './components/SplashScreen'
@@ -26,6 +27,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/details" element={<DetailedBreakdown />} />
             <Route path="/changelog" element={<VersionHistory />} />
+            <Route path="/download" element={<Download />} />
           </Routes>
           <KirbySwitcher />
           <QuoteEngine />
