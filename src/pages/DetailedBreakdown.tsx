@@ -20,9 +20,16 @@ export const DetailedBreakdown = () => {
                     <Link to="/" className="text-[var(--theme-primary)] font-mono text-sm hover:opacity-100 transition-opacity no-underline flex items-center gap-2">
                         <span>{"<"} BACK_TO_DASHBOARD</span>
                     </Link>
-                    <div className="text-right">
-                        <h2 className="text-2xl font-black italic tracking-tighter">TECHNICAL_DEEP_DIVE</h2>
-                        <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Module: Detailed_Breakdown_v1.0</p>
+                    <div className="text-right flex items-center gap-4">
+                        <div>
+                            <h2 className="text-2xl font-black italic tracking-tighter">TECHNICAL_DEEP_DIVE</h2>
+                            <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Module: Detailed_Breakdown_v1.0</p>
+                        </div>
+                        <img
+                            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/assets/logo.png`}
+                            alt="Logo"
+                            className="w-10 h-10 object-contain filter drop-shadow-[0_0_10px_var(--theme-primary)]"
+                        />
                     </div>
                 </div>
 

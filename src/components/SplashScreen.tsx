@@ -16,6 +16,8 @@ export const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
     };
   }, [onComplete]);
 
+  const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+
   return (
     <motion.div
       className="fixed inset-0 bg-[var(--theme-bg)] z-[100] flex flex-col items-center justify-center p-8 text-center"
@@ -88,6 +90,11 @@ export const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
             exit={{ opacity: 0 }}
             className="flex flex-col items-center gap-4"
           >
+            <img
+              src={`${baseUrl}/assets/logo.png`}
+              alt="H4 Logo"
+              className="w-24 h-24 object-contain mb-8 filter drop-shadow-[0_0_20px_var(--theme-primary)]"
+            />
             <div className="w-64 h-1 bg-[var(--theme-primary)]/10 relative overflow-hidden">
               <motion.div
                 className="absolute inset-0 bg-[var(--theme-primary)]"

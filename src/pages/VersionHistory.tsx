@@ -44,13 +44,21 @@ export const VersionHistory = () => {
             </div>
 
             <div className="max-w-4xl mx-auto z-10 relative">
+                {/* Header Information */}
                 <div className="flex justify-between items-center mb-12 border-b border-[var(--theme-primary)]/10 pb-6">
                     <Link to="/" className="text-[var(--theme-primary)] font-mono text-xs hover:opacity-100 transition-opacity no-underline flex items-center gap-2">
-                        <span>{"<"} BACK_TO_INTERFACE</span>
+                        <span>{"<"} REVERSE_INTERFACE</span>
                     </Link>
-                    <div className="text-right">
-                        <h2 className="text-3xl font-black italic tracking-tighter">SOFTWARE_CHANGELOG</h2>
-                        <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Source: GitHub_m3rr_h4_GameHack</p>
+                    <div className="flex items-center gap-6">
+                        <div className="text-right">
+                            <h2 className="text-3xl font-black italic tracking-tighter uppercase">COMMIT_LOG</h2>
+                            <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Module: VERSION_STAMP_AUDIT</p>
+                        </div>
+                        <img
+                            src={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/assets/logo.png`}
+                            alt="H4 Logo"
+                            className="w-12 h-12 object-contain filter drop-shadow-[0_0_10px_var(--theme-primary)]"
+                        />
                     </div>
                 </div>
 

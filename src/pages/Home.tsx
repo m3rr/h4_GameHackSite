@@ -8,6 +8,16 @@ export const Home = () => {
   return (
     <div className="min-h-screen p-4 md:p-12 flex flex-col items-center justify-center relative overflow-hidden">
       {/* Background Decorative Assets - Synchronized via Base_URL */}
+      <div className="fixed top-8 left-8 z-50 pointer-events-none flex items-center gap-4">
+        <img
+          src={`${baseUrl}/assets/logo.png`}
+          alt="H4 Logo"
+          className="w-10 h-10 object-contain drop-shadow-[0_0_10px_var(--theme-primary)]"
+        />
+        <div className="h-4 w-[1px] bg-[var(--theme-primary)]/20" />
+        <span className="text-[10px] font-mono tracking-[0.4em] opacity-40">SYSTEM_OPERATIONAL</span>
+      </div>
+
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
         <img
           src={`${baseUrl}/assets/netrunner_dashboard.png`}
@@ -34,6 +44,14 @@ export const Home = () => {
           <div className="glass p-8 md:p-12 cyber-border relative group">
             <div className="absolute top-0 right-0 p-4 font-mono text-[10px] opacity-30 group-hover:opacity-100 transition-opacity">
               BUILD: v1.0.0-BETA (EXPERIMENTAL)
+            </div>
+
+            <div className="mb-6">
+              <img
+                src={`${baseUrl}/assets/logo.png`}
+                alt="H4 Logo"
+                className="w-16 h-16 object-contain mb-4 filter drop-shadow-[0_0_15px_var(--theme-primary)]"
+              />
             </div>
 
             <h1 className="text-5xl md:text-8xl font-black mb-4 tracking-tighter italic">

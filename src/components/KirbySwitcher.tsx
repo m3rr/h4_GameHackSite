@@ -11,10 +11,11 @@ const KIRBY_VARIATIONS = [
   "ಠ_ಠ", "¯\\_(ツ)_/¯", "凸(^_^)凸", "(⊙_⊙)", "(^_-)", "(o^^o)", "(*^^*)"
 ];
 
+// Re-ordering index 10 specifically for the flip-kirby per logo request
 const THEME_NAMES = [
   "NOMAD_ORANGE", "CORPO_CYAN", "NET_RUNNER", "SPECTER_GOLD", "DECAY_RED",
   "PHANTOM_VIOLET", "CASCADE_AZURE", "NEON_WAVE", "MINT_REFRESH", "SAFFRON_GLOW",
-  "ICE_BREAKER", "CRIMSON_VALLEY", "COBALT_STRIKE", "EMERALD_EYE", "ROSE_PROTOCOL",
+  "MASTER_LOGO", "CRIMSON_VALLEY", "COBALT_STRIKE", "EMERALD_EYE", "ROSE_PROTOCOL",
   "ONYX_METALLIC", "TITAN_ELECTRUM", "AMBER_PULSE", "TEAL_TRAIL", "ORCHID_DEEP",
   "FORRESTER", "VOLCANO", "MIDNIGHT_LUSTRE", "SAKURA_VIBE", "GLACIER_SHARD",
   "SANDSTORM", "VOID_PHASE", "ELECTRON_BLUE", "PLASMA_GREEN", "BLIGHT_TOXIN",
@@ -35,7 +36,7 @@ const THEME_CONFIGS = [
   { primary: "#f472b6", bg: "#0d0208", accent: "rgba(244, 114, 182, 0.1)" }, // NEON
   { primary: "#4ade80", bg: "#020d06", accent: "rgba(74, 222, 128, 0.1)" }, // MINT
   { primary: "#fbbf24", bg: "#0d0a02", accent: "rgba(251, 191, 36, 0.1)" }, // SAFFRON
-  { primary: "#99f6e4", bg: "#020d0b", accent: "rgba(153, 246, 228, 0.1)" },
+  { primary: "#00d1db", bg: "#01080c", accent: "rgba(0, 209, 219, 0.2)" }, // MASTER_LOGO (Synchronized Cyan)
   { primary: "#ef4444", bg: "#0d0202", accent: "rgba(239, 68, 68, 0.1)" },
   { primary: "#3b82f6", bg: "#02060d", accent: "rgba(59, 130, 246, 0.1)" },
   { primary: "#10b981", bg: "#020d08", accent: "rgba(16, 185, 129, 0.1)" },

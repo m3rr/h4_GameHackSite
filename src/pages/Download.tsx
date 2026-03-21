@@ -57,9 +57,16 @@ export const Download = () => {
                     <Link to="/" className="text-[var(--theme-primary)] font-mono text-xs hover:opacity-100 transition-opacity no-underline flex items-center gap-2">
                         <span>{"<"} BACK_TO_INTERFACE</span>
                     </Link>
-                    <div className="text-right">
-                        <h2 className="text-3xl font-black italic tracking-tighter uppercase">TECHNICAL_PREVIEW</h2>
-                        <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Module: H4_ENGINE_DISTRIBUTION</p>
+                    <div className="text-right flex items-center gap-4">
+                        <div>
+                            <h2 className="text-3xl font-black italic tracking-tighter uppercase">TECHNICAL_PREVIEW</h2>
+                            <p className="text-[10px] font-mono opacity-50 uppercase tracking-[0.3em]">Module: H4_ENGINE_DISTRIBUTION</p>
+                        </div>
+                        <img
+                            src={`${baseUrl}/assets/logo.png`}
+                            alt="Logo"
+                            className="w-12 h-12 object-contain filter drop-shadow-[0_0_10px_var(--theme-primary)]"
+                        />
                     </div>
                 </div>
 
