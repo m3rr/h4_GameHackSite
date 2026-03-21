@@ -14,19 +14,8 @@
  * getBasename() // Returns: "/apps/my-app"
  */
 export function getBasename(): string {
-  const path = window.location.pathname;
-
-  // GitHub Pages or Sub-folder deployment: /h4_GameHackSite/
-  if (path.startsWith('/h4_GameHackSite')) {
-    return '/h4_GameHackSite';
-  }
-
-  // MPA pattern: /apps/{app_id}
-  const match = path.match(/^\/apps\/[^/]+/);
-  if (match) {
-    return match[0];
-  }
-
-  return '/';
+  // Use Vite's build-time base path, ensuring no trailing slash for React Router compatibility
+  const base = import.meta.env.BASE_URL || '/';
+  return base === '/' ? '' : base.replace(/\/$/, '');
 }
 

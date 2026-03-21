@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import DetailedBreakdown from './pages/DetailedBreakdown'
 import VersionHistory from './pages/VersionHistory'
-import { getBasename } from './utils/router'
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { SplashScreen } from './components/SplashScreen'
@@ -11,7 +10,7 @@ import { QuoteEngine } from './components/QuoteEngine'
 
 function App() {
   const [showSplash, setShowSplash] = useState(true)
-  const basename = getBasename()
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') // Ensure no trailing slash for basename
 
   return (
     <BrowserRouter basename={basename}>
