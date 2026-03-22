@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
@@ -135,7 +135,7 @@ export const VersionHistory = () => {
 
                 {/* Footer info */}
                 <div className="mt-12 text-center opacity-30 font-mono text-[9px] uppercase tracking-[0.4em] pb-32">
-                    End of dynamic data stream // h4_integ_version_v1.0
+                    End of dynamic data stream // h4_integ_version_v0.5.0
                 </div>
             </div>
 

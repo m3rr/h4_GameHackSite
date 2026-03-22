@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 const KIRBY_VARIATIONS = [
   "(b ' . ' )b", "d( ' . ' d)", "t( -_- t)", "p( ' . ' p)", "┻━┻︵ヽ(`Д´)ﾉ︵ ┻━┻",
@@ -8,7 +9,7 @@ const KIRBY_VARIATIONS = [
   "(∩｀-´)⊃━☆ﾟ.*･｡ﾟ", "(¬_¬)", "( ͡° ͜ʖ ͡°)", "ʕ•ᴥ•ʔ", "(ᵔᴥᵔ)",
   "p(^_^)q", "ᕦ(ò_óˇ)ᕤ", "(☞ﾟ∀ﾟ)☞", "☜(˚▽˚)☞", "v( ' . ' v)",
   "<(' . '<)", "(> ' . ')>", "^(' . ')^", "v(' . ')^", "(;´༎ຶД༎ຶ`)",
-  "ಠ_ಠ", "¯\\_(ツ)_/¯", "凸(^_^)凸", "(⊙_⊙)", "(^_-)", "(o^^o)", "(*^^*)"
+  "ಠ_ಠ", "¯\\_(ツ)_/¯", "凸(^_^)凸", "(⊙_⊙)", "(^_-)", "(o^^o)", "(*^^*)", "┻━┻ ︵ヽ(°□°ヽ)"
 ];
 
 // Re-ordering index 10 specifically for the flip-kirby per logo request
@@ -20,7 +21,7 @@ const THEME_NAMES = [
   "FORRESTER", "VOLCANO", "MIDNIGHT_LUSTRE", "SAKURA_VIBE", "GLACIER_SHARD",
   "SANDSTORM", "VOID_PHASE", "ELECTRON_BLUE", "PLASMA_GREEN", "BLIGHT_TOXIN",
   "MERCURY_FLOW", "OBSIDIAN_GREY", "QUARTZ_DUST", "TOPAZ_GLOW", "RUBY_CORR",
-  "SAPPHIRE_HEART", "PYRITE_DUST"
+  "SAPPHIRE_HEART", "PYRITE_DUST", "LEFT_FLIP"
 ];
 
 // Curated colors for each of the 37 themes. Never using pure #000 or #FFF.
@@ -62,14 +63,36 @@ const THEME_CONFIGS = [
   { primary: "#fde68a", bg: "#0d0d0a", accent: "rgba(253, 230, 138, 0.1)" },
   { primary: "#fecaca", bg: "#0d0a0a", accent: "rgba(254, 202, 202, 0.1)" },
   { primary: "#bfdbfe", bg: "#0a0c0f", accent: "rgba(191, 219, 254, 0.1)" },
-  { primary: "#fef08a", bg: "#0d0d05", accent: "rgba(254, 240, 138, 0.1)" }
+  { primary: "#fef08a", bg: "#0d0d05", accent: "rgba(254, 240, 138, 0.1)" },
+  { primary: "#ff4d4d", bg: "#0d0000", accent: "rgba(255, 77, 77, 0.1)" } // A placeholder for the new index 37, can be customized
 ];
 
 export const KirbySwitcher = () => {
-  const [index, setIndex] = useState(0);
+  const location = useLocation();
+  const isAboutPage = location.pathname === '/about';
+
+  // Index 23 is ☜(˚▽˚)☞ (Point left towards Patreon link)
+  // Index 37 is ┻━┻ ︵ヽ(°□°ヽ) (Left Table Flip)
+  const [index, setIndex] = useState(isAboutPage ? 23 : 0);
+
+  useEffect(() => {
+    if (isAboutPage) {
+      setIndex(23);
+    }
+    return () => {
+      document.documentElement.removeAttribute('data-kirby-flipped');
+    };
+  }, [isAboutPage]);
 
   const handleClick = () => {
-    const nextIndex = (index + 1) % KIRBY_VARIATIONS.length;
+    let nextIndex;
+    if (isAboutPage) {
+      // Logic for About Page: Toggle between pointing left and flipping left
+      nextIndex = index === 23 ? 37 : 23;
+    } else {
+      nextIndex = (index + 1) % KIRBY_VARIATIONS.length;
+    }
+
     setIndex(nextIndex);
 
     const config = THEME_CONFIGS[nextIndex];
@@ -77,6 +100,13 @@ export const KirbySwitcher = () => {
     root.style.setProperty('--theme-bg', config.bg);
     root.style.setProperty('--theme-primary', config.primary);
     root.style.setProperty('--theme-accent', config.accent);
+
+    // Set global flag for other components to react to the flip
+    if (nextIndex === 37) {
+      root.setAttribute('data-kirby-flipped', 'true');
+    } else {
+      root.removeAttribute('data-kirby-flipped');
+    }
   };
 
   return (

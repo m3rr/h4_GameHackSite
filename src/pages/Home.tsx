@@ -1,6 +1,6 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { PatreonIcon } from '../components/PatreonIcon';
 
 export const Home = () => {
   const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
@@ -16,6 +16,18 @@ export const Home = () => {
         />
         <div className="h-4 w-[1px] bg-[var(--theme-primary)]/20" />
         <span className="text-[10px] font-mono tracking-[0.4em] opacity-40">SYSTEM_OPERATIONAL</span>
+      </div>
+
+      <div className="fixed top-8 right-8 z-50 flex items-center gap-4 pointer-events-auto">
+        <a
+          href="https://www.patreon.com/cw/h4dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2 border border-[var(--theme-primary)]/20 text-[var(--theme-primary)] hover:bg-[var(--theme-primary)]/10 transition-colors rounded-sm group"
+          title="Support on Patreon"
+        >
+          <PatreonIcon className="w-5 h-5 text-[#FF424D] group-hover:scale-110 transition-transform" />
+        </a>
       </div>
 
       <div className="absolute inset-0 z-0 opacity-20 pointer-events-none overflow-hidden">
@@ -43,7 +55,7 @@ export const Home = () => {
         >
           <div className="glass p-8 md:p-12 cyber-border relative group">
             <div className="absolute top-0 right-0 p-4 font-mono text-[10px] opacity-30 group-hover:opacity-100 transition-opacity">
-              BUILD: v1.0.0-BETA (EXPERIMENTAL)
+              BUILD: 0.5.0 Beta (EXPERIMENTAL)
             </div>
 
             <div className="mb-6">
@@ -68,13 +80,20 @@ export const Home = () => {
               >
                 Download Suite
               </Link>
-              <a
-                href="https://github.com/m3rr/h4_GameHack"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/about"
                 className="px-8 py-3 border border-[var(--theme-primary)] text-[var(--theme-primary)] font-bold uppercase tracking-widest hover:-skew-x-2 transition-transform cursor-pointer active:scale-95 no-underline"
               >
-                Documentation
+                About Author
+              </Link>
+              <a
+                href="https://www.patreon.com/cw/h4dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 bg-[var(--theme-primary)]/10 text-[var(--theme-primary)] border border-[var(--theme-primary)]/20 font-bold uppercase tracking-widest hover:bg-[var(--theme-primary)]/20 transition-all cursor-pointer active:scale-95 no-underline flex items-center gap-3"
+              >
+                <PatreonIcon className="w-5 h-5 text-[#FF424D]" />
+                Patreon
               </a>
             </div>
           </div>
@@ -123,7 +142,7 @@ export const Home = () => {
               </li>
               <li className="flex justify-between border-b border-white/5 pb-2">
                 <Link to="/changelog" className="opacity-40 uppercase hover:opacity-100 transition-opacity no-underline text-inherit">Version Info:</Link>
-                <span className="text-[var(--theme-primary)]/30">v1.2.0-STABLE</span>
+                <span className="text-[var(--theme-primary)]/30">0.5.0 Beta</span>
               </li>
             </ul>
 

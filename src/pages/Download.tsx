@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { PatreonIcon } from '../components/PatreonIcon';
 
 interface Screenshot {
     url: string;
@@ -78,6 +79,24 @@ export const Download = () => {
                             </p>
                         </div>
 
+                        <div className="glass p-8 cyber-border bg-[var(--theme-bg)]/40">
+                            <h3 className="text-sm font-bold mb-4 flex items-center gap-3 text-[#FF424D]">
+                                <PatreonIcon className="w-5 h-5" />
+                                SUPPORT_ON_PATREON
+                            </h3>
+                            <p className="font-mono text-[10px] leading-relaxed opacity-60 mb-6">
+                                If you find these tools useful, consider supporting the continued development and research at H4_LABS through our Patreon.
+                            </p>
+                            <a
+                                href="https://www.patreon.com/cw/h4dev"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-center px-4 py-2 border border-[#FF424D]/30 text-[9px] font-mono uppercase text-[#FF424D] hover:bg-[#FF424D]/10 no-underline transition-colors"
+                            >
+                                JOIN_THE_MISSION
+                            </a>
+                        </div>
+
                         <div className="grid grid-cols-2 gap-4">
                             <div className="glass p-4 border-[var(--theme-primary)]/10">
                                 <span className="text-[9px] opacity-40 block mb-1">BINARY_SIZE</span>
@@ -92,7 +111,7 @@ export const Download = () => {
 
                     {/* Screenshot Grid */}
                     <div className="lg:col-span-8">
-                        <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] mb-6 opacity-40">Operational_Snapshots // v1.2.0</h4>
+                        <h4 className="text-[10px] font-mono uppercase tracking-[0.3em] mb-6 opacity-40">Operational_Snapshots // 0.5.0 Beta</h4>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                             {SCREENSHOTS.map((img, i) => (
                                 <ThumbnailCard
@@ -108,7 +127,7 @@ export const Download = () => {
                 </div>
 
                 <div className="mt-12 text-center opacity-30 font-mono text-[9px] uppercase tracking-[0.4em] pb-32">
-                    End of technical preview // h4_integ_dist_v1.0
+                    End of technical preview // h4_integ_dist_v0.5.0
                 </div>
             </div>
 
