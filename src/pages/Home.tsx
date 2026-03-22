@@ -82,7 +82,7 @@ export const Home = () => {
               </Link>
               <Link
                 to="/about"
-                className="px-8 py-3 border border-[var(--theme-primary)] text-[var(--theme-primary)] font-bold uppercase tracking-widest hover:-skew-x-2 transition-transform cursor-pointer active:scale-95 no-underline"
+                className="px-8 py-3 border border-[var(--theme-primary)] text-[var(--theme-primary)] font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity cursor-pointer active:scale-95 no-underline"
               >
                 About Author
               </Link>
@@ -140,11 +140,14 @@ export const Home = () => {
                 <span className="opacity-40 uppercase">Pointer Scan:</span>
                 <span className="text-[var(--theme-primary)]">ACTIVE</span>
               </li>
-              <li className="flex justify-between border-b border-white/5 pb-2">
-                <Link to="/changelog" className="opacity-40 uppercase hover:opacity-100 transition-opacity no-underline text-inherit">Version Info:</Link>
-                <span className="text-[var(--theme-primary)]/30">0.5.0 Beta</span>
-              </li>
             </ul>
+
+            <Link
+              to="/changelog"
+              className="mt-6 p-2 border border-[var(--theme-primary)]/10 bg-[var(--theme-primary)]/5 text-[var(--theme-primary)] font-mono text-[9px] uppercase tracking-widest text-center hover:bg-[var(--theme-primary)]/10 transition-colors no-underline group"
+            >
+              <span className="opacity-60 group-hover:opacity-100 transition-opacity">VIEW_COMMIT_LOG {">"}</span>
+            </Link>
 
             {/* Engine Snapshot Image Component */}
             <div className="mt-8 relative aspect-video bg-[var(--theme-bg)]/40 rounded-sm overflow-hidden border border-white/10 group">

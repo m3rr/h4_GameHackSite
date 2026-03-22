@@ -12,6 +12,7 @@ interface Commit {
         };
     };
     html_url: string;
+    repoType?: 'SITE' | 'APP';
 }
 
 export const VersionHistory = () => {
@@ -22,10 +23,36 @@ export const VersionHistory = () => {
     useEffect(() => {
         const fetchCommits = async () => {
             try {
-                const response = await fetch('https://api.github.com/repos/m3rr/h4_GameHack/commits?per_page=10');
-                if (!response.ok) throw new Error('Failed to fetch from logic core.');
-                const data = await response.json();
-                setCommits(data);
+                const endpoints = [
+                    'https://api.github.com/repos/m3rr/h4_GameHackSite/commits?per_page=10',
+                    'https://api.github.com/repos/m3rr/h4_GameHack/commits?per_page=10'
+                ];
+
+                const [siteResp, appResp] = await Promise.all(
+                    endpoints.map(url => fetch(url))
+                );
+
+                if (!siteResp.ok || !appResp.ok) {
+                    throw new Error('Failed to fetch from one or more logic cores.');
+                }
+
+                const [siteData, appData] = await Promise.all([
+                    siteResp.json(),
+                    appResp.json()
+                ]);
+
+                // Tag and merge
+                const mergedCommits: Commit[] = [
+                    ...siteData.map((c: any) => ({ ...c, repoType: 'SITE' })),
+                    ...appData.map((c: any) => ({ ...c, repoType: 'APP' }))
+                ];
+
+                // Sort by date descending
+                mergedCommits.sort((a, b) =>
+                    new Date(b.commit.author.date).getTime() - new Date(a.commit.author.date).getTime()
+                );
+
+                setCommits(mergedCommits.slice(0, 15)); // Keep latest 15 across both
             } catch (err: any) {
                 setError(err.message);
             } finally {
@@ -103,14 +130,17 @@ export const VersionHistory = () => {
                             >
                                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
                                     <div className="flex-1 space-y-2">
-                                        <div className="flex items-center gap-3">
-                                            <span className="text-[10px] bg-[var(--theme-primary)] text-[var(--theme-bg)] px-2 py-0.5 font-bold uppercase tracking-widest">
+                                        <div className="flex gap-2">
+                                            <span className={`text-[9px] px-2 py-0.5 font-bold uppercase tracking-widest ${item.repoType === 'APP' ? 'bg-[#FF424D] text-white' : 'bg-[var(--theme-primary)] text-[var(--theme-bg)]'}`}>
+                                                {item.repoType}
+                                            </span>
+                                            <span className="text-[10px] bg-white/10 text-white/60 px-2 py-0.5 font-bold uppercase tracking-widest">
                                                 COMMIT_{item.sha.substring(0, 7)}
                                             </span>
-                                            <span className="text-[10px] font-mono opacity-40 uppercase tracking-widest">
-                                                {new Date(item.commit.author.date).toLocaleDateString()}
-                                            </span>
                                         </div>
+                                        <span className="text-[10px] font-mono opacity-40 uppercase tracking-widest">
+                                            {new Date(item.commit.author.date).toLocaleDateString()}
+                                        </span>
                                         <p className="text-sm font-mono text-[var(--theme-primary)]/90 group-hover:text-[var(--theme-primary)] transition-colors line-clamp-2">
                                             {item.commit.message}
                                         </p>
